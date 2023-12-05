@@ -18,6 +18,9 @@ def check_point_in_shapefile(lon, lat, gdf):
 # 应用函数并创建一个新列
 df['is_within_shape'] = df.apply(lambda row: check_point_in_shapefile(row['longitude'], row['latitude'], gdf), axis=1)
 
+# 筛选出满足条件的行
+df_within_shape = df[df['is_within_shape'] == True]
+
 # 将结果保存到新的CSV文件
-output_path = r"C:\zhijie_project\data\selected_location.csv"
-df.to_csv(output_path, index=False)
+output_path = r"C:\zhijie_project\data\selected_location2.csv"
+df_within_shape.to_csv(output_path, index=False)
